@@ -1,0 +1,65 @@
+.card {
+  position: relative;
+  width: 260px;
+  font-family: system-ui, sans-serif;
+}
+
+.card__poster {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 4px 4px 24px -5px rgba(66, 68, 90, 1);
+}
+
+.card__image {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  display: block;
+}
+
+.card__rating {
+  position: absolute;
+  left: 16px;
+  bottom: 70px;
+
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+
+  background-color: #0e1b13;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.card__rating-value {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+
+  background-color: #0e1b13;
+  border: 3px solid #1ed760;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.card__title {
+  margin: 12px 0 4px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #000;
+}
+
+.card__date {
+  font-size: 14px;
+  color: #777;
+}

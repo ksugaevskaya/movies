@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ChangeEvent } from "react";
 import "./App.css";
 import Card from "./components/card/Card";
 import Footer from "./components/footer/Footer";
@@ -18,6 +18,17 @@ type MovieProps = {
 
 function App() {
   const [movies, setMovies] = useState<MovieProps[]>([]);
+  const [inputValue, setInputValue] = useState("");
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleClick = () => {};
+
+  const movieSearched = movies.filter((movie) =>
+    movie.name.includes(inputValue),
+  );
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -32,9 +43,13 @@ function App() {
 
   return (
     <>
-      <Header></Header>
+      <Header
+        onChange={handleChange}
+        value={inputValue}
+        onClick={handleClick}
+      ></Header>
       <div className="card__container">
-        {movies.map((movie) => (
+        {movieSearched.map((movie) => (
           <Card
             key={movie.id}
             img={movie.image.medium}

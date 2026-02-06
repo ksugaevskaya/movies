@@ -8,7 +8,7 @@ type MovieProps = {
   id: number;
   image: {
     medium: string;
-  };
+  } | null;
   name: string;
   premiered: string;
   rating: {
@@ -19,6 +19,7 @@ type MovieProps = {
 function App() {
   const [movies, setMovies] = useState<MovieProps[]>([]);
   const [inputValue, setInputValue] = useState("");
+  const [page, setPage] = useState(1);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -28,16 +29,20 @@ function App() {
     movie.name.includes(inputValue),
   );
 
+  const handlePagination = () => {
+    setPage((p) => p + 1);
+  };
+
   useEffect(() => {
     const fetchMovies = async () => {
-      const response = await fetch("https://api.tvmaze.com/shows?page=1");
+      const response = await fetch(`https://api.tvmaze.com/shows?page=${page}`);
 
       const data = await response.json();
       setMovies(data);
     };
 
     fetchMovies();
-  }, []);
+  }, [page]);
 
   return (
     <>
@@ -46,13 +51,16 @@ function App() {
         {filteredMovies.map((movie) => (
           <Card
             key={movie.id}
-            img={movie.image.medium}
+            img={movie?.image?.medium}
             title={movie.name}
             date={movie.premiered}
             rating={movie.rating.average}
           />
-        ))}{" "}
+        ))}
       </div>
+      <button onClick={handlePagination} className="pagination-button">
+        NEXT
+      </button>
       <Footer />
     </>
   );

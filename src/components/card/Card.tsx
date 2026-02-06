@@ -1,7 +1,7 @@
 import "./Card.css";
 
 type CardProps = {
-  img: string;
+  img?: string;
   title: string;
   date: string;
   rating: number | null;

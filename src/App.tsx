@@ -24,9 +24,7 @@ function App() {
     setInputValue(e.target.value);
   };
 
-  const handleClick = () => {};
-
-  const movieSearched = movies.filter((movie) =>
+  const filteredMovies = movies.filter((movie) =>
     movie.name.includes(inputValue),
   );
 
@@ -43,13 +41,9 @@ function App() {
 
   return (
     <>
-      <Header
-        onChange={handleChange}
-        value={inputValue}
-        onClick={handleClick}
-      ></Header>
+      <Header onChange={handleChange} value={inputValue}></Header>
       <div className="card__container">
-        {movieSearched.map((movie) => (
+        {filteredMovies.map((movie) => (
           <Card
             key={movie.id}
             img={movie.image.medium}
